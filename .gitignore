@@ -1,0 +1,19 @@
+.vscode
+Materials
+Prefabs
+Fonts
+Backgrounds
+SFX
+Scenes
+Sounds
+Sprites
+TextMesh Pro
+*.meta
+Library
+Logs
+Packages
+ProjectSettings
+Temp
+UserSettings
+Assembly-CSharp.*
+LaserDefender.*
