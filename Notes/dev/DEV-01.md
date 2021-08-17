@@ -66,3 +66,6 @@ So set the `Main Camera`'s `Camera`'s `Size` property to 10
 Then resize the background using shift 
 
 ![](../images/DEV-01-P.png)
+
+Minor tweaks on the size of the Enemy and the positioning of the player
+![](../images/DEV-01-Q.png)
