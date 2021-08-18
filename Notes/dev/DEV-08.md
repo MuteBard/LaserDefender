@@ -12,6 +12,7 @@ We need to:
 + Reset the transform
 + Set the Y to above the view of the game
 + Set the size to cover the whole top
++ Check off Is Trigger
 
 ![](../images/DEV-08-A.png)
 
