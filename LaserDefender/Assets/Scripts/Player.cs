@@ -1,3 +1,4 @@
+
 using System;
 using System.Threading;
 using System.Collections;
@@ -7,17 +8,23 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    //Serialized Fields
+    //Imported Game Objects 
+    [SerializeField] GameObject frontLaser;
+
+    //Config Fields
     [Range(5f, 15f)] [SerializeField] float moveSpeed = 10;
     [SerializeField] float paddingRest = 1f;
     [SerializeField] float paddingTop = 10f;
+    [SerializeField] float projectileSpeed = 10f;
+    [SerializeField] float projectileFiringPeriod = 0.1f;
+    Coroutine firingCoroutine;
 
     //Player constants
     float xMin;
     float xMax;
     float yMin;
     float yMax;
-
+    
     //Project Settings constants
     const string HORIZONTAL = "Horizontal";
     const string VERTICAL = "Vertical";
@@ -30,6 +37,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
+        Fire();
     }
 
     private void Move(){
@@ -51,5 +59,22 @@ public class Player : MonoBehaviour
         xMax = gameCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - paddingRest;
         yMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + paddingRest;
         yMax = gameCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - paddingTop;
+    }
+
+    private void Fire()
+    {
+        if (Input.GetButtonDown("Fire1")){
+            firingCoroutine = StartCoroutine(FireContinously());
+        }
+        if (Input.GetButtonUp("Fire1")){
+            StopCoroutine(firingCoroutine);
+        }
+    }
+    private IEnumerator FireContinously(){
+        while(true){
+            GameObject newFrontLaser = Instantiate(frontLaser, transform.position, Quaternion.identity) as GameObject;
+            newFrontLaser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
+            yield return new WaitForSeconds(projectileFiringPeriod);
+        }
     }
 }
