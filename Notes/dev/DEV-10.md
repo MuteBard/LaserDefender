@@ -7,7 +7,7 @@ https://docs.unity3d.com/ScriptReference/Vector2.MoveTowards.html
 ### Code Flow
 ```
 //if you haent reached the last waypoint then
-    //MoveTowars() target waypoint
+    //MoveTowards() target waypoint
     //check if you reached the target
         //If so, increment target waypoint
 
