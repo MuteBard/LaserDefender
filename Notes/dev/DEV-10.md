@@ -5,6 +5,7 @@
 https://docs.unity3d.com/ScriptReference/Vector2.MoveTowards.html
 
 ### Code Flow
+```
 //if you haent reached the last waypoint then
     //MoveTowars() target waypoint
     //check if you reached the target
@@ -12,6 +13,7 @@ https://docs.unity3d.com/ScriptReference/Vector2.MoveTowards.html
 
 //if you reached the last waypoint
     //Destroy enemy gameObject
+```
 
 + How to grab an instance's current position:
     ```transform.position```
