@@ -4,21 +4,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPathing : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     //Config Fields
-    [SerializeField] WaveConfig waveConfig;
+    WaveConfig waveConfig;
     List<Transform> waypoints;
-    [Range(1f, 10f)] [SerializeField] float moveSpeed;
+    float moveSpeed;
     int waypointIndex = 0;
 
     void Start(){
         waypoints = waveConfig.GetWaypoints();
+        moveSpeed = waveConfig.GetMoveSpeed();
         transform.position = waypoints[waypointIndex].transform.position;
     }
     void Update(){
         Move();
     }
+
+    public void SetWaveConfig(WaveConfig waveConfig){ this.waveConfig = waveConfig; }
 
     private void Move(){
         if(waypointIndex <= waypoints.Count - 1){
