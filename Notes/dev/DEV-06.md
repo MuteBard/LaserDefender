@@ -1,4 +1,5 @@
 ## DEV-06, using Coroutines (Theory)
+#### Tags: [repeated, coroutines]
 
 We want the player to be able to just hold down a key and have the ability to continue shooting
 

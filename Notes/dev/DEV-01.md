@@ -1,4 +1,5 @@
-## DEV-01, Setting up our project:
+## DEV-01, Setting up our project: 
+#### Tags: [resolution, canvas, camera, background]
 Imported some assets and reorganized them
 
 ![](../images/DEV-01-A.png)

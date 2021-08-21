@@ -1,4 +1,5 @@
 ## DEV-08, GameObject Shredder
+#### Tags: [trigger, destroy, collision, projectiles]
 
 We need to make sure that we destroy the boat load of lasers that we create so that are game remains performant.
 

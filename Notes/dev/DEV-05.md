@@ -1,4 +1,5 @@
 ## DEV-05, Making it possible for the player to shoot:
+#### Tags: [projectiles]
 
 Create a new `Laser` prefab with `Sprite Render` component with a sprite and attach this `Laser` prefab to the `Player` prefab
 

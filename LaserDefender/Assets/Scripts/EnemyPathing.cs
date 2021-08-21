@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,11 +7,13 @@ using UnityEngine;
 public class EnemyPathing : MonoBehaviour
 {
     //Config Fields
-    [SerializeField] List<Transform> waypoints;
+    [SerializeField] WaveConfig waveConfig;
+    List<Transform> waypoints;
     [Range(1f, 10f)] [SerializeField] float moveSpeed;
     int waypointIndex = 0;
 
     void Start(){
+        waypoints = waveConfig.GetWaypoints();
         transform.position = waypoints[waypointIndex].transform.position;
     }
     void Update(){

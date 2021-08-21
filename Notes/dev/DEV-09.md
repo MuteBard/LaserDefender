@@ -1,4 +1,6 @@
 ## DEV-09, Creating List of Waypoints
+#### Tags: [pathing]
+
 
 ### What are Waypoints?
 

@@ -1,4 +1,5 @@
 ## DEV-07, using Coroutines (Implementation)
+#### Tags: [repeated, coroutines, IEnumerator]
 
 We need to make sure that we are able to 
 + start a coroutine upon button press (StartCoroutine(IEnumerator))

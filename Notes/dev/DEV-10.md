@@ -1,4 +1,5 @@
 ## DEV-10, Moving enemy along waypoint path
+#### Tags: [pathing, destroy]
 + We are going to make are enemy move and then destroying it when it gets to our last waypoint
 
 **Vector2.MoveTowards**

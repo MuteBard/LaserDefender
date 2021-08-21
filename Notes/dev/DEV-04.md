@@ -1,4 +1,5 @@
 ## DEV-04, How to know what feature to go for next?:
+#### Tags: [planning]
 
 ![](../images/DEV-04-A.png)
 

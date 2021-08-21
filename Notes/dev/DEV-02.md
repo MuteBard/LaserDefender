@@ -1,11 +1,12 @@
 ## DEV-02, Movement & Time.deltaTime:
+#### Tags: [delta, time, input, framerate]
 
 We will be making our character move in multiple directions
 We will also be introducing Time.deltaTime to make our game framerate independent
 
 ### Manipulating Axis
 
-This is an alterative to getting Key Down stuff in scripts. insteadd we can do this:
+This is an alterative to getting Key Down stuff in scripts. instead we can do this:
 
 Edit > Project Settings > Input Manager
 
