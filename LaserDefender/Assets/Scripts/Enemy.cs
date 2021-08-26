@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     float moveSpeed;
     int waypointIndex = 0;
 
+    [SerializeField] float health = 100;
+    
     void Start(){
         waypoints = waveConfig.GetWaypoints();
         moveSpeed = waveConfig.GetMoveSpeed();
@@ -28,13 +30,35 @@ public class Enemy : MonoBehaviour
             var targetPosition = waypoints[waypointIndex].transform.position;
             var movementThisFrame = moveSpeed * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, movementThisFrame);
-            
+
             if(transform.position == targetPosition){
                 waypointIndex++;
             }
         }else{
             Destroy(gameObject);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
+        ReceiveDamage(damageDealer);
+    }
+
+    private void ReceiveDamage(DamageDealer damageDealer)
+    {
+        
+        health -= damageDealer.GetDamage();
+        damageDealer.Hit();
+        if (health < 0)
+        {
+            Explode();
+        }
+    }
+
+    private void Explode()
+    {
+        Destroy(gameObject);
     }
 }
 
