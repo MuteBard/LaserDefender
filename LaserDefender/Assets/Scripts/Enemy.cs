@@ -13,14 +13,35 @@ public class Enemy : MonoBehaviour
     int waypointIndex = 0;
 
     [SerializeField] float health = 100;
-    
+    [SerializeField] float shotCounter;
+    [SerializeField] float minTimeBetweenShots = .2f;
+    [SerializeField] float maxTimeBetweenShots = 1f;
+    [SerializeField] float projectileSpeed = 20f;
+    [SerializeField] GameObject enemyFrontLaser;
+
+
     void Start(){
         waypoints = waveConfig.GetWaypoints();
         moveSpeed = waveConfig.GetMoveSpeed();
         transform.position = waypoints[waypointIndex].transform.position;
+        shotCounter = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
     }
     void Update(){
         Move();
+        CountDownAndShoot();
+    }
+
+    private void CountDownAndShoot(){
+        shotCounter -= Time.deltaTime;
+        if(shotCounter <= 0){
+            Fire();
+            shotCounter = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
+        }
+    }
+
+    private void Fire(){
+        GameObject newEnemyLaser = Instantiate(enemyFrontLaser, transform.position, Quaternion.identity) as GameObject;
+        newEnemyLaser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -projectileSpeed * 5);
     }
 
     public void SetWaveConfig(WaveConfig waveConfig){ this.waveConfig = waveConfig; }
@@ -42,7 +63,9 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
-        ReceiveDamage(damageDealer);
+        if(damageDealer.getLaserName() == "greenlaser"){
+            ReceiveDamage(damageDealer);
+        }
     }
 
     private void ReceiveDamage(DamageDealer damageDealer)
