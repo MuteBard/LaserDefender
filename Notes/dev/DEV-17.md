@@ -1,5 +1,5 @@
 ## DEV-17 (and DEV-18), make the enemy receive damage and Destroy Enemy
-#### Tags: [projectiles, collision]
+#### Tags: [projectiles, collision, health]
 
 
 ![](../images/DEV-17-A.jpg)

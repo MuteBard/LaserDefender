@@ -9,12 +9,15 @@ public class Player : MonoBehaviour
 {
 
     //Imported Game Objects 
-    [SerializeField] GameObject frontLaser;
-
-    //Config Fields
+    [Header("Player")]
     [Range(5f, 15f)] [SerializeField] float moveSpeed = 10;
-    [SerializeField] float paddingRest = 1f;
     [SerializeField] float paddingTop = 10f;
+    [SerializeField] float paddingRest = 1f;
+    [SerializeField] int health = 200;
+
+
+    [Header("Projectile")]
+    [SerializeField] GameObject frontLaser;
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float projectileFiringPeriod = 0.1f;
     Coroutine firingCoroutine;
@@ -38,6 +41,27 @@ public class Player : MonoBehaviour
     {
         Move();
         Fire();
+    }
+
+    void OnTriggerEnter2D(Collider2D other){
+        DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
+        if(!!damageDealer){
+            ReceiveDamage(damageDealer);
+        } 
+    }
+
+    private void ReceiveDamage(DamageDealer damageDealer){
+        health -= damageDealer.GetDamage();
+        damageDealer.Hit();
+        if (health < 0)
+        {
+            Explode();
+        }
+    }
+
+    private void Explode()
+    {
+        Destroy(gameObject);
     }
 
     private void Move(){

@@ -63,9 +63,7 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
-        if(damageDealer.getLaserName() == "greenlaser"){
-            ReceiveDamage(damageDealer);
-        }
+        ReceiveDamage(damageDealer);
     }
 
     private void ReceiveDamage(DamageDealer damageDealer)
