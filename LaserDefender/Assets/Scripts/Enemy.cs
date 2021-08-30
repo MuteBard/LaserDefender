@@ -1,3 +1,4 @@
+using System.Transactions;
 using System.Diagnostics;
 using System.Threading;
 using System.Collections;
@@ -18,6 +19,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] float maxTimeBetweenShots = 1f;
     [SerializeField] float projectileSpeed = 20f;
     [SerializeField] GameObject enemyFrontLaser;
+    [SerializeField] GameObject deathVFX;
+    [SerializeField] float durationOfExplosion = 1f;
+
 
 
     void Start(){
@@ -80,6 +84,8 @@ public class Enemy : MonoBehaviour
     private void Explode()
     {
         Destroy(gameObject);
+        GameObject explosion = Instantiate(deathVFX, transform.position, transform.rotation);
+        Destroy(explosion, durationOfExplosion);
     }
 }
 
