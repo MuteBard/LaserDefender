@@ -8,21 +8,31 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     //Config Fields
+    [Header("Movement")]
     WaveConfig waveConfig;
     List<Transform> waypoints;
     float moveSpeed;
     int waypointIndex = 0;
 
+    [Header("HP")]
     [SerializeField] float health = 100;
     [SerializeField] float shotCounter;
+
+    [Header("Firing")]
     [SerializeField] float minTimeBetweenShots = .2f;
     [SerializeField] float maxTimeBetweenShots = 1f;
     [SerializeField] float projectileSpeed = 20f;
     [SerializeField] GameObject enemyFrontLaser;
+    
+    [Header("Visual Effects")]
     [SerializeField] GameObject deathVFX;
     [SerializeField] float durationOfExplosion = 1f;
 
-
+    [Header("Sound Effects")]
+    [SerializeField] AudioClip laserSFX;
+    [SerializeField] AudioClip deathSFX;
+    [SerializeField] [Range(0,1)] float laserSFXVolume = 0.5f;
+    [SerializeField] [Range(0,1)] float deathSFXVolume = 1f;
 
     void Start(){
         waypoints = waveConfig.GetWaypoints();
@@ -45,6 +55,7 @@ public class Enemy : MonoBehaviour
 
     private void Fire(){
         GameObject newEnemyLaser = Instantiate(enemyFrontLaser, transform.position, Quaternion.identity) as GameObject;
+        AudioSource.PlayClipAtPoint(laserSFX, Camera.main.transform.position, laserSFXVolume);
         newEnemyLaser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -projectileSpeed * 5);
     }
 
@@ -83,6 +94,7 @@ public class Enemy : MonoBehaviour
 
     private void Explode()
     {
+        AudioSource.PlayClipAtPoint(deathSFX, Camera.main.transform.position, deathSFXVolume);
         Destroy(gameObject);
         GameObject explosion = Instantiate(deathVFX, transform.position, transform.rotation);
         Destroy(explosion, durationOfExplosion);

@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
     //Imported Game Objects 
     [Header("Player")]
     [Range(5f, 15f)] [SerializeField] float moveSpeed = 10;
@@ -15,12 +14,17 @@ public class Player : MonoBehaviour
     [SerializeField] float paddingRest = 1f;
     [SerializeField] int health = 200;
 
-
-    [Header("Projectile")]
+    [Header("Firing")]
     [SerializeField] GameObject frontLaser;
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float projectileFiringPeriod = 0.1f;
     Coroutine firingCoroutine;
+
+    [Header("Sound Effects")]
+    [SerializeField] AudioClip laserSFX;
+    [SerializeField] AudioClip deathSFX;
+    [SerializeField] [Range(0,1)] float laserSFXVolume = 0.5f;
+    [SerializeField] [Range(0,1)] float deathSFXVolume = 1f;
 
     //Player constants
     float xMin;
@@ -61,6 +65,7 @@ public class Player : MonoBehaviour
 
     private void Explode()
     {
+        AudioSource.PlayClipAtPoint(deathSFX, Camera.main.transform.position, deathSFXVolume);
         Destroy(gameObject);
     }
 
@@ -96,6 +101,7 @@ public class Player : MonoBehaviour
     }
     private IEnumerator FireContinously(){
         while(true){
+            AudioSource.PlayClipAtPoint(laserSFX, Camera.main.transform.position, laserSFXVolume);
             GameObject newFrontLaser = Instantiate(frontLaser, transform.position, Quaternion.identity) as GameObject;
             newFrontLaser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
             yield return new WaitForSeconds(projectileFiringPeriod);
