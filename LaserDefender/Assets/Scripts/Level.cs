@@ -11,9 +11,10 @@ public class Level : MonoBehaviour
     [SerializeField] string gameover;
     [SerializeField] string gamestart;
     [SerializeField] string gameplay;
+    [SerializeField] float secondsDelay = 2f;
 
     public void LoadGameOver(){
-        SceneManager.LoadScene(gameover);
+        StartCoroutine(WaitAndLoad());
     }
     public void LoadGame(){
         SceneManager.LoadScene(gameplay);
@@ -23,5 +24,9 @@ public class Level : MonoBehaviour
     }
     public void QuitGame(){
         Application.Quit();
+    }
+    IEnumerator WaitAndLoad(){
+        yield return new WaitForSeconds(secondsDelay);
+        SceneManager.LoadScene(gameover);
     }
 }
