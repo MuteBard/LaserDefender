@@ -1,5 +1,5 @@
 ## DEV-24 Explosion particle effects
-#### Tags: [particles, material]
+#### Tags: [particles, material, texture sheet animation module]
 
 ### Create VFX folder
 
@@ -28,3 +28,6 @@ Changed the Emission rate, shape, color, speed, lifetime,
 ![](../images/DEV-24-D.png)
 
 ![](../images/DEV-24-E.png)
+
+### Issues
+we did not use the Texture sheet animation module for this unfortunately

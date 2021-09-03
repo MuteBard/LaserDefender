@@ -1,5 +1,5 @@
 ## DEV-28, Music player with singleton
-#### Tags: [music]
+#### Tags: [music, singleton]
 
 
 ![](../images/DEV-28-A.png)

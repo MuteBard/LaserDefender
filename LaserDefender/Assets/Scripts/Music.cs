@@ -9,7 +9,7 @@ public class Music : MonoBehaviour
     }
 
     private void SetUpSingleton(){
-       if(FindObjectsOfType(GetType()).Length > 1) {
+       if(FindObjectsOfType<Music>().Length > 1) {
            gameObject.SetActive(false);
            Destroy(gameObject);
        }else{

@@ -34,6 +34,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] [Range(0,1)] float laserSFXVolume = 0.5f;
     [SerializeField] [Range(0,1)] float deathSFXVolume = 1f;
 
+    [Header("Points")]
+    
+    [SerializeField] int points = 10;
+    
+
     void Start(){
         waypoints = waveConfig.GetWaypoints();
         moveSpeed = waveConfig.GetMoveSpeed();
@@ -96,6 +101,7 @@ public class Enemy : MonoBehaviour
 
     private void Explode()
     {
+        FindObjectOfType<GameSession>().AddToScore(points);
         AudioSource.PlayClipAtPoint(deathSFX, Camera.main.transform.position, deathSFXVolume);
         Destroy(gameObject);
         GameObject explosion = Instantiate(deathVFX, transform.position, transform.rotation);

@@ -17,6 +17,7 @@ public class Level : MonoBehaviour
         StartCoroutine(WaitAndLoad());
     }
     public void LoadGame(){
+        FindObjectOfType<GameSession>().ResetScore();
         SceneManager.LoadScene(gameplay);
     }
     public void LoadStartMenu(){
