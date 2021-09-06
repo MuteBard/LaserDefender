@@ -47,6 +47,10 @@ public class Player : MonoBehaviour
         Fire();
     }
 
+    public int GetHp(){
+        return health;
+    }
+
     void OnTriggerEnter2D(Collider2D other){
         DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
         if(!!damageDealer){
@@ -57,7 +61,7 @@ public class Player : MonoBehaviour
     private void ReceiveDamage(DamageDealer damageDealer){
         health -= damageDealer.GetDamage();
         damageDealer.Hit();
-        if (health < 0)
+        if (health <= 0)
         {
             Explode();
         }

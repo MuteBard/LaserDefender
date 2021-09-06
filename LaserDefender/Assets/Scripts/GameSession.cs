@@ -20,6 +20,14 @@ public class GameSession : MonoBehaviour
     }
     public int GetScore(){ return score; }
 
+    public int GetPlayerHp(){ 
+        if(FindObjectOfType<Player>()){
+            return FindObjectOfType<Player>().GetHp();
+        }else{
+            return 0;
+        }
+    }
+
     public void AddToScore(int points){ score += points;}
 
     public void ResetScore(){ score = 0; }
